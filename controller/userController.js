@@ -41,12 +41,27 @@ export const getSingleUser = async (req, res) => {
 };
 
 // 3.update user Router
-export const updateUser = (req, res) => {
-  res.status(200).json({ message: "update User Route" });
+export const updateUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = req.body;
+    const updateduser = await userModel.findByIdAndUpdate(id, user, {
+      new: true,
+    });
+    res.status(200).json(updateduser);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 // 4.delte user Router
 
-export const deleteUser = (req, res) => {
-  res.status(200).json({ message: "delete User Route" });
+export const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await userModel.findByIdAndDelete(id);
+    res.status(200).json({ message: "user deleted Successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
