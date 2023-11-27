@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     district: {
-      typeL: String,
+      type: String,
     },
     state: {
       type: String,

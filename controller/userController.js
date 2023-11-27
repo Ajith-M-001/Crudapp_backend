@@ -10,6 +10,7 @@ export const addUser = async (req, res) => {
       district,
       state,
     });
+    console.log(newUser);
     await newUser.save();
     res.status(200).json({ message: "User Added Successfully" });
   } catch (error) {
